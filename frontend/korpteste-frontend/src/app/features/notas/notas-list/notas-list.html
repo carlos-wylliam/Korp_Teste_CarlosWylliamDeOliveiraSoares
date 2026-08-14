@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>Número</th>
+      <th>Status</th>
+      <th>Qtd. Itens</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let nota of notas">
+      <td>{{ nota.numero }}</td>
+      <td>{{ nota.status }}</td>
+      <td>{{ nota.itens?.length }}</td>
+    </tr>
+  </tbody>
+</table>

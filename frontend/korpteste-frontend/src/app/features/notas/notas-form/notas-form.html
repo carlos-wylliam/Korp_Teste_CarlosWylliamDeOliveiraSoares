@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+    <p>Status: {{ form.value.status }}</p>
+
+    <div formArrayName="itens">
+        <div *ngFor="let item of itens.controls; let i = index" [formGroupName]="i">
+            <label>Código do Produto</label>
+            <input type="text" formControlName="produtoCodigo">
+
+            <label>Quantidade</label>
+            <input type="text" formControlName="produtoCodigo">
+
+            <button type="button" (click)="removerItem(i)">Remover</button>
+        </div>
+    </div>
+
+    <button type="button" (click)="adicionarItem()">Adicionar Produto</button>
+    <button type="submit">Salvar Nota</button>
+</form>
