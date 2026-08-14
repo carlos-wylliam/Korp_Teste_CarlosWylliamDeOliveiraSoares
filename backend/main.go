@@ -18,5 +18,7 @@ func main() {
 
 	r.POST("/produtos", controllers.CriarProduto)
 	r.GET("/produtos", controllers.ListarProdutos)
+	r.POST("/notas", controllers.CriarNota)
+	r.GET("/notas", controllers.ListarProdutos)
 	r.Run(":8000")
 }
