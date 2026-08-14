@@ -19,3 +19,7 @@ func CriarProduto(c *gin.Context) {
 	produtos = append(produtos, produto)
 	c.JSON(http.StatusCreated, produto)
 }
+
+func ListarProdutos(c *gin.Context) {
+	c.JSON(http.StatusOK, produtos)
+}
