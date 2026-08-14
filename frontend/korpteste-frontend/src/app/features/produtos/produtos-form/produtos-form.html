@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="salvar()">
+    <label>Código</label>
+    <input type="text" formControlName="codigo">
+
+    <label>Descrição</label>
+    <input type="text" formControlName="descricao">
+
+    <label>Saldo</label>
+    <input type="number" formControlName="saldo">
+
+    <button type="submit">Salvar</button>
+</form>
