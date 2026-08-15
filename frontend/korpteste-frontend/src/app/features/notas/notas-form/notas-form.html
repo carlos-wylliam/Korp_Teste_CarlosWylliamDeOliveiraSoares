@@ -1,18 +1,26 @@
-<form [formGroup]="form" (ngSubmit)="salvar()">
-    <p>Status: {{ form.value.status }}</p>
+<div class="form-container">
+  <h1>Cadastro de Nota Fiscal</h1>
 
-    <div formArrayName="itens">
-        <div *ngFor="let item of itens.controls; let i = index" [formGroupName]="i">
-            <label>Código do Produto</label>
-            <input type="text" formControlName="produtoCodigo">
+  <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
+    <div class="status-badge">Status: {{ form.value.status }}</div>
 
-            <label>Quantidade</label>
-            <input type="number" formControlName="quantidade">
-
-            <button type="button" (click)="removerItem(i)">Remover</button>
+    <div formArrayName="itens" class="itens-list">
+      <div *ngFor="let item of itens.controls; let i = index" [formGroupName]="i" class="item-row">
+        <div class="form-group">
+          <label>Código do Produto</label>
+          <input type="text" formControlName="produtoCodigo">
         </div>
+
+        <div class="form-group">
+          <label>Quantidade</label>
+          <input type="number" formControlName="quantidade">
+        </div>
+
+        <button type="button" class="btn-remove" (click)="removerItem(i)">Remover</button>
+      </div>
     </div>
 
-    <button type="button" (click)="adicionarItem()">Adicionar Produto</button>
-    <button type="submit">Salvar Nota</button>
-</form>
+    <button type="button" class="btn-secondary" (click)="adicionarItem()">Adicionar Produto</button>
+    <button type="submit" class="btn-primary">Salvar Nota</button>
+  </form>
+</div>
