@@ -1,12 +1,22 @@
-<form [formGroup]="form" (ngSubmit)="salvar()">
-    <label>Código</label>
-    <input type="text" formControlName="codigo">
+<div class="form-container">
+  <h1>Cadastro de Produto</h1>
 
-    <label>Descrição</label>
-    <input type="text" formControlName="descricao">
+  <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
+    <div class="form-group">
+      <label>Código</label>
+      <input type="text" formControlName="codigo">
+    </div>
 
-    <label>Saldo</label>
-    <input type="number" formControlName="saldo">
+    <div class="form-group">
+      <label>Descrição</label>
+      <input type="text" formControlName="descricao">
+    </div>
 
-    <button type="submit">Salvar</button>
-</form>
+    <div class="form-group">
+      <label>Saldo</label>
+      <input type="number" formControlName="saldo">
+    </div>
+
+    <button type="submit" class="btn-primary">Salvar</button>
+  </form>
+</div>
