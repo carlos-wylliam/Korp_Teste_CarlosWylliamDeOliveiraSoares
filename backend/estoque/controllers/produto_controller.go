@@ -48,3 +48,38 @@ func ListarProdutos(c *gin.Context) {
 
 	c.JSON(http.StatusOK, produtos)
 }
+
+type AtualizarSaldoRequest struct {
+	Quantidade float64 `json:"quantidade"`
+}
+
+func AtualizarSaldo(c *gin.Context) {
+	codigo := c.Param("codigo")
+
+	var req AtualizarSaldoRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	var saldoAtual float64
+	err := database.DB.QueryRow("SELECT saldo FROM produtos WHERE codigo = ?", codigo).Scan(&saldoAtual)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "produto não encontrado"})
+		return
+	}
+
+	if saldoAtual < req.Quantidade {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "saldo insuficiente para o produto " + codigo})
+		return
+	}
+
+	novoSaldo := saldoAtual - req.Quantidade
+	_, err = database.DB.Exec("UPDATE produtos SET saldo = ? WHERE codigo = ?", novoSaldo, codigo)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao atualizar saldo: " + err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"codigo": codigo, "novoSaldo": novoSaldo})
+}
