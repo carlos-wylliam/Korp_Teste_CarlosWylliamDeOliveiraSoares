@@ -16,4 +16,8 @@ export class Nota {
   listar() {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  imprimir(numero:number) {
+    return this.http.put(`${this.apiUrl}/${numero}/imprimir`, {});
+  }
 }

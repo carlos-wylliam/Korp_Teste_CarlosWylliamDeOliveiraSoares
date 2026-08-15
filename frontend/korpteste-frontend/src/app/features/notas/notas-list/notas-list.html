@@ -1,9 +1,12 @@
+<div *ngIf="erro" style="color: red;">{{ erro }}</div>
+
 <table>
   <thead>
     <tr>
       <th>Número</th>
       <th>Status</th>
       <th>Qtd. Itens</th>
+      <th>Ação</th>
     </tr>
   </thead>
   <tbody>
@@ -11,6 +14,14 @@
       <td>{{ nota.numero }}</td>
       <td>{{ nota.status }}</td>
       <td>{{ nota.itens?.length }}</td>
+      <td>
+        <button
+          *ngIf="nota.status === 'Aberta'"
+          [disabled]="imprimindo === nota.numero"
+          (click)="imprimir(nota.numero)">
+          {{ imprimindo === nota.numero ? 'Imprimindo...' : 'Imprimir' }}
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
