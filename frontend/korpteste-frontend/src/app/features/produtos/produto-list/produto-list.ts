@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Produto } from '../produto';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-produto-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './produto-list.html',
   styleUrl: './produto-list.css',
 })

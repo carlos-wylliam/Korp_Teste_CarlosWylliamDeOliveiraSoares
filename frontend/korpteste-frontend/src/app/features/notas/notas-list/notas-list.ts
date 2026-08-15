@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Nota } from '../nota';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-notas-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './notas-list.html',
   styleUrl: './notas-list.css',
 })
