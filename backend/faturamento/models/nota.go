@@ -1,4 +1,3 @@
-
 package models
 
 type ItemNota struct {
@@ -7,7 +6,7 @@ type ItemNota struct {
 }
 
 type Nota struct {
-	Numero int         `json:"numero"`
-	Status string      `json:"status"`
-	Itens  []ItemNota  `json:"itens"`
+	Numero int        `json:"numero"`
+	Status string     `json:"status"`
+	Itens  []ItemNota `json:"itens"`
 }

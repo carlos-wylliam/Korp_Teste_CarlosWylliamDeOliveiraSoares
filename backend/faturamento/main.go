@@ -1,13 +1,16 @@
 package main
 
 import (
-	"korpteste-backend/controllers"
+	"faturamento/controllers"
+	"faturamento/database"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	database.Conectar()
+
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
@@ -16,9 +19,8 @@ func main() {
 		AllowHeaders: []string{"Origin", "Content-Type"},
 	}))
 
-	r.POST("/produtos", controllers.CriarProduto)
-	r.GET("/produtos", controllers.ListarProdutos)
 	r.POST("/notas", controllers.CriarNota)
-	r.GET("/notas", controllers.ListarProdutos)
-	r.Run(":8000")
+	r.GET("/notas", controllers.ListarNotas)
+
+	r.Run(":8001")
 }
