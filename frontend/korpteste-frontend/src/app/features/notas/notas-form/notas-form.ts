@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Nota } from '../nota';
 
 @Component({
   selector: 'app-notas-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './notas-form.html',
   styleUrl: './notas-form.css',
 })
@@ -11,7 +13,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } fr
 export class NotasForm {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private notaService: Nota) {
     this.form = this.fb.group({
       status: ['Aberta'],
       itens: this.fb.array([])
@@ -30,5 +32,14 @@ export class NotasForm {
   }
   removerItem(index:number) {
     this.itens.removeAt(index);
-  } 
+  }
+  
+  salvar() {
+    if (this.form.valid) {
+      this.notaService.criar(this.form.value).subscribe({
+        next: () => console.log('Nota cadastrada com sucesso'),
+        error: (err) => console.error('Erro ao cadastrar nota', err)
+      });
+    }
+  }
 }

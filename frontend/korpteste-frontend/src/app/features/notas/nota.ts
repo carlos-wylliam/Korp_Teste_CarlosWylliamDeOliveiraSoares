@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Nota {
-  private apiUrl = 'http://localhost:8000/notas';
+  private apiUrl = 'http://localhost:8001/notas';
 
   constructor(private http: HttpClient) {}
 

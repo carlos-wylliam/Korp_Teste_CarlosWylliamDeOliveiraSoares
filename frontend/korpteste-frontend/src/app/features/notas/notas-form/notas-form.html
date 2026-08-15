@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="salvar()">
     <p>Status: {{ form.value.status }}</p>
 
     <div formArrayName="itens">
@@ -7,7 +7,7 @@
             <input type="text" formControlName="produtoCodigo">
 
             <label>Quantidade</label>
-            <input type="text" formControlName="produtoCodigo">
+            <input type="number" formControlName="quantidade">
 
             <button type="button" (click)="removerItem(i)">Remover</button>
         </div>
