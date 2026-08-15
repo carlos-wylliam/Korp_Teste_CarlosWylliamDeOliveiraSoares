@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Nota } from '../nota';
 
@@ -13,7 +13,7 @@ import { Nota } from '../nota';
 export class NotasForm {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private notaService: Nota) {
+  constructor(private fb: FormBuilder, private notaService: Nota, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       status: ['Aberta'],
       itens: this.fb.array([])
@@ -37,7 +37,10 @@ export class NotasForm {
   salvar() {
     if (this.form.valid) {
       this.notaService.criar(this.form.value).subscribe({
-        next: () => console.log('Nota cadastrada com sucesso'),
+        next: () => {
+          console.log('Nota cadastrada com sucesso');
+          this.cdr.detectChanges();
+        },
         error: (err) => console.error('Erro ao cadastrar nota', err)
       });
     }

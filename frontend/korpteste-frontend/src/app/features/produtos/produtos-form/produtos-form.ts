@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Produto } from '../produto';
 
@@ -11,7 +11,7 @@ import { Produto } from '../produto';
 export class ProdutosForm {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private produtoService: Produto) {
+  constructor(private fb: FormBuilder, private produtoService: Produto, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       codigo: ['', Validators.required],
       descricao: ['', Validators.required],
@@ -22,7 +22,10 @@ export class ProdutosForm {
   salvar() {
     if (this.form.valid) {
       this.produtoService.cadastrar(this.form.value).subscribe({
-        next: () => console.log('Produto cadastrado com sucesso'),
+        next: () => {
+          console.log('Produto cadastrado com sucesso');
+          this.cdr.detectChanges();
+        },
         error: (err) => console.error('Erro ao cadastrar produto', err)
       });
     }
