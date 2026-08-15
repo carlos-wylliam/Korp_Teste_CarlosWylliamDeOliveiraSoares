@@ -1,0 +1,42 @@
+.home {
+    padding: 2rem;
+    text-align: center;
+}
+
+.home h1 {
+    margin-bottom: 2rem;
+    color: #1f2937;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    display: block;
+    width: 250px;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #f3f4f6;
+    text-decoration: none;
+    color: #1f2937;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.card h2 {
+    margin-bottom: 0.5rem;
+    color: #2563eb;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #4b5563;
+}
