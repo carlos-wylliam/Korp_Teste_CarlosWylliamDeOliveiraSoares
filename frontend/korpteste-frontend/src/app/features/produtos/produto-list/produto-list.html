@@ -1,16 +1,23 @@
-<table>
+<div class="list-container">
+  <div class="list-header">
+    <h1>Produtos</h1>
+    <a routerLink="/produtos/novo" class="btn-primary">Novo Produto</a>
+  </div>
+
+  <table class="table">
     <thead>
-        <tr>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Saldo</th>
-        </tr>
+      <tr>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Saldo</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let produto of produtos">
-            <td>{{ produto.codigo }}</td>
-            <td>{{ produto.descricao }}</td>
-            <td>{{ produto.saldo}}</td>
-        </tr>
+      <tr *ngFor="let produto of produtos">
+        <td>{{ produto.codigo }}</td>
+        <td>{{ produto.descricao }}</td>
+        <td>{{ produto.saldo }}</td>
+      </tr>
     </tbody>
-</table>
+  </table>
+</div>
