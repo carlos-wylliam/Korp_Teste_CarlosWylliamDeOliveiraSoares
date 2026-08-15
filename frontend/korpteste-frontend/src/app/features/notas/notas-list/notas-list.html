@@ -1,27 +1,39 @@
-<div *ngIf="erro" style="color: red;">{{ erro }}</div>
+<div class="list-container">
+  <div class="list-header">
+    <h1>Notas Fiscais</h1>
+    <a routerLink="/notas/novo" class="btn-primary">Nova Nota</a>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Número</th>
-      <th>Status</th>
-      <th>Qtd. Itens</th>
-      <th>Ação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let nota of notas">
-      <td>{{ nota.numero }}</td>
-      <td>{{ nota.status }}</td>
-      <td>{{ nota.itens?.length }}</td>
-      <td>
-        <button
-          *ngIf="nota.status === 'Aberta'"
-          [disabled]="imprimindo === nota.numero"
-          (click)="imprimir(nota.numero)">
-          {{ imprimindo === nota.numero ? 'Imprimindo...' : 'Imprimir' }}
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <div *ngIf="erro" class="alert-error">{{ erro }}</div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Status</th>
+        <th>Qtd. Itens</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let nota of notas">
+        <td>{{ nota.numero }}</td>
+        <td>
+          <span class="status-badge" [class.status-fechada]="nota.status === 'Fechada'">
+            {{ nota.status }}
+          </span>
+        </td>
+        <td>{{ nota.itens?.length }}</td>
+        <td>
+          <button
+            *ngIf="nota.status === 'Aberta'"
+            class="btn-print"
+            [disabled]="imprimindo === nota.numero"
+            (click)="imprimir(nota.numero)">
+            {{ imprimindo === nota.numero ? 'Imprimindo...' : 'Imprimir' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
