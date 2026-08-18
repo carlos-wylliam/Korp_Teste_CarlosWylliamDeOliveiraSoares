@@ -24,7 +24,8 @@
           </span>
         </td>
         <td>{{ nota.itens?.length }}</td>
-        <td>
+        <td class="acoes">
+          <button class="btn-detalhes" (click)="verDetalhes(nota)">Ver Detalhes</button>
           <button
             *ngIf="nota.status === 'Aberta'"
             class="btn-print"
@@ -36,4 +37,35 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class="modal-overlay" *ngIf="notaSelecionada" (click)="fecharDetalhes()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Nota Fiscal #{{ notaSelecionada.numero }}</h2>
+      <button class="btn-fechar" (click)="fecharDetalhes()">✕</button>
+    </div>
+
+    <p class="modal-status">
+      Status:
+      <span class="status-badge" [class.status-fechada]="notaSelecionada.status === 'Fechada'">
+        {{ notaSelecionada.status }}
+      </span>
+    </p>
+
+    <table class="table modal-table">
+      <thead>
+        <tr>
+          <th>Código do Produto</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of notaSelecionada.itens">
+          <td>{{ item.produtoCodigo }}</td>
+          <td>{{ item.quantidade }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

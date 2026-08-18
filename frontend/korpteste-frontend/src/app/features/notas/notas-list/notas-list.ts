@@ -1,19 +1,19 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Nota } from '../nota';
 import { RouterLink } from '@angular/router';
+import { Nota } from '../nota';
 
 @Component({
   selector: 'app-notas-list',
   imports: [CommonModule, RouterLink],
   templateUrl: './notas-list.html',
-  styleUrl: './notas-list.css',
+  styleUrl: './notas-list.css'
 })
-
 export class NotasList implements OnInit {
   notas: any[] = [];
   imprimindo: number | null = null;
   erro: string | null = null;
+  notaSelecionada: any = null;
 
   constructor(private notaService: Nota, private cdr: ChangeDetectorRef) {}
 
@@ -31,6 +31,14 @@ export class NotasList implements OnInit {
     });
   }
 
+  verDetalhes(nota: any) {
+    this.notaSelecionada = nota;
+  }
+
+  fecharDetalhes() {
+    this.notaSelecionada = null;
+  }
+
   imprimir(numero: number) {
     this.imprimindo = numero;
     this.erro = null;
@@ -43,6 +51,7 @@ export class NotasList implements OnInit {
       error: (err) => {
         this.imprimindo = null;
         this.erro = err.error?.error || 'Erro ao imprimir nota';
+        this.cdr.detectChanges();
       }
     });
   }

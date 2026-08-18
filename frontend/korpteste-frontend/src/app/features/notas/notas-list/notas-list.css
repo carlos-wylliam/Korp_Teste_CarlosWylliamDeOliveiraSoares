@@ -87,6 +87,27 @@
   background-color: #1d4ed8;
 }
 
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-detalhes {
+  padding: 0.4rem 0.9rem;
+  background-color: #e5e7eb;
+  color: #1f2937;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-detalhes:hover {
+  background-color: #d1d5db;
+}
+
 .btn-print {
   padding: 0.4rem 0.9rem;
   background-color: #f59e0b;
@@ -106,4 +127,60 @@
 .btn-print:disabled {
   background-color: #d1d5db;
   cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  font-size: 1.2rem;
+  color: #1f2937;
+}
+
+.btn-fechar {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.btn-fechar:hover {
+  color: #1f2937;
+}
+
+.modal-status {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.modal-table {
+  box-shadow: none;
 }
