@@ -1,4 +1,12 @@
 <div class="form-container">
+  <div *ngIf="mensagemSucesso" class="toast-sucesso">
+    Nota fiscal cadastrada com sucesso!
+  </div>
+
+  <div *ngIf="mensagemErro" class="toast-erro">
+    {{ mensagemErro }}
+  </div>
+
   <h1>Cadastro de Nota Fiscal</h1>
 
   <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
@@ -9,11 +17,17 @@
         <div class="form-group">
           <label>Código do Produto</label>
           <input type="text" formControlName="produtoCodigo">
+          <span class="erro-campo" *ngIf="item.get('produtoCodigo')?.touched && item.get('produtoCodigo')?.hasError('required')">
+            Código é obrigatório
+          </span>
         </div>
 
         <div class="form-group">
           <label>Quantidade</label>
           <input type="number" formControlName="quantidade">
+          <span class="erro-campo" *ngIf="item.get('quantidade')?.touched && item.get('quantidade')?.hasError('min')">
+            A quantidade deve ser no mínimo 1
+          </span>
         </div>
 
         <button type="button" class="btn-remove" (click)="removerItem(i)">Remover</button>
