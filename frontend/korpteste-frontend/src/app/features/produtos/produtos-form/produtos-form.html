@@ -18,11 +18,20 @@
     <div class="form-group">
       <label>Descrição</label>
       <input type="text" formControlName="descricao">
+      <span class="erro-campo" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('minlength')">
+        A descrição precisa ter pelo menos 3 caracteres
+      </span>
+      <span class="erro-campo" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('required')">
+        A descrição é obrigatória
+      </span>
     </div>
 
     <div class="form-group">
       <label>Saldo</label>
       <input type="number" formControlName="saldo">
+      <span class="erro-campo" *ngIf="form.get('saldo')?.touched && form.get('saldo')?.hasError('min')">
+        O saldo não pode ser negativo
+      </span>
     </div>
 
     <button type="submit" class="btn-primary">Salvar</button>

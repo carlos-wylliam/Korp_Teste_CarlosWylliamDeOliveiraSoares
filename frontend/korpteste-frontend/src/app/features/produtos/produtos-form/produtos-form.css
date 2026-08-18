@@ -87,6 +87,11 @@
   animation: slide-in 0.3s ease;
 }
 
+.erro-campo {
+  color: #dc2626;
+  font-size: 0.8rem;
+}
+
 @keyframes slide-in {
   from {
     transform: translateX(30px);

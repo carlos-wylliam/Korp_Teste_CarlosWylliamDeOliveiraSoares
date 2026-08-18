@@ -19,7 +19,7 @@ export class ProdutosForm {
   constructor(private fb: FormBuilder, private produtoService: Produto, private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       codigo: ['', Validators.required],
-      descricao: ['', Validators.required],
+      descricao: ['', [Validators.required, Validators.minLength(3)]],
       saldo: [0, [Validators.required, Validators.min(0)]]
     });
   }

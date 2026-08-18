@@ -22,6 +22,6 @@ func main() {
 	r.POST("/produtos", controllers.CriarProduto)
 	r.GET("/produtos", controllers.ListarProdutos)
 	r.PUT("/produtos/:codigo/saldo", controllers.AtualizarSaldo)
-	
+	r.GET("/produtos/:codigo", controllers.BuscarProduto)
 	r.Run(":8000")
 }

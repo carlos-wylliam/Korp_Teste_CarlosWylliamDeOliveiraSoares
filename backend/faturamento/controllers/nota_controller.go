@@ -11,11 +11,52 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const estoqueURL = "http://localhost:8000"
+
 func CriarNota(c *gin.Context) {
 	var nota models.Nota
 	if err := c.ShouldBindJSON(&nota); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
+	}
+
+	if len(nota.Itens) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "a nota precisa ter pelo menos um item"})
+		return
+	}
+
+	for _, item := range nota.Itens {
+		resp, err := http.Get(estoqueURL + "/produtos/" + item.ProdutoCodigo)
+		if err != nil {
+			c.JSON(http.StatusServiceUnavailable, gin.H{"error": "serviço de estoque indisponível: " + err.Error()})
+			return
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode == http.StatusNotFound {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "produto não encontrado: " + item.ProdutoCodigo})
+			return
+		}
+
+		var produto struct {
+			Codigo    string  `json:"codigo"`
+			Descricao string  `json:"descricao"`
+			Saldo     float64 `json:"saldo"`
+		}
+		json.NewDecoder(resp.Body).Decode(&produto)
+
+		reservado, err := obterQuantidadeReservada(item.ProdutoCodigo)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao calcular saldo reservado: " + err.Error()})
+			return
+		}
+
+		saldoDisponivel := produto.Saldo - reservado
+
+		if saldoDisponivel < item.Quantidade {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "saldo insuficiente para o produto " + item.ProdutoCodigo})
+			return
+		}
 	}
 
 	result, err := database.DB.Exec(
@@ -43,6 +84,17 @@ func CriarNota(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, nota)
+}
+
+func obterQuantidadeReservada(produtoCodigo string) (float64, error) {
+	var total float64
+	err := database.DB.QueryRow(`
+		SELECT COALESCE(SUM(itens_nota.quantidade), 0)
+		FROM itens_nota
+		JOIN notas ON notas.numero = itens_nota.nota_numero
+		WHERE itens_nota.produto_codigo = ? AND notas.status = 'Aberta'
+	`, produtoCodigo).Scan(&total)
+	return total, err
 }
 
 func ListarNotas(c *gin.Context) {
@@ -78,8 +130,6 @@ func ListarNotas(c *gin.Context) {
 
 	c.JSON(http.StatusOK, notas)
 }
-
-const estoqueURL = "http://localhost:8000"
 
 func ImprimirNota(c *gin.Context) {
 	numero := c.Param("numero")

@@ -90,3 +90,17 @@ func AtualizarSaldo(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"codigo": codigo, "novoSaldo": novoSaldo})
 }
+
+func BuscarProduto(c *gin.Context) {
+	codigo := c.Param("codigo")
+
+	var produto models.Produto
+	err := database.DB.QueryRow("SELECT codigo, descricao, saldo FROM produtos WHERE codigo = ?", codigo).
+		Scan(&produto.Codigo, &produto.Descricao, &produto.Saldo)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "produto não encontrado"})
+		return
+	}
+
+	c.JSON(http.StatusOK, produto)
+}
