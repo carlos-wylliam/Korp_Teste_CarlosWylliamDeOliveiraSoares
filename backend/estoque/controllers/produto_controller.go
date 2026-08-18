@@ -16,6 +16,13 @@ func CriarProduto(c *gin.Context) {
 		return
 	}
 
+	var existe int
+	database.DB.QueryRow("SELECT COUNT(*) FROM produtos WHERE codigo = ?", produto.Codigo).Scan(&existe)
+	if existe > 0 {
+		c.JSON(http.StatusConflict, gin.H{"error": "já existe um produto com esse código"})
+		return
+	}
+
 	_, err := database.DB.Exec(
 		"INSERT INTO produtos (codigo, descricao, saldo) VALUES (?, ?, ?)",
 		produto.Codigo, produto.Descricao, produto.Saldo,

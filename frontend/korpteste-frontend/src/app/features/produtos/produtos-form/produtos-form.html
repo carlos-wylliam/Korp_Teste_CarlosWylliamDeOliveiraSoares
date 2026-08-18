@@ -1,4 +1,12 @@
 <div class="form-container">
+  <div *ngIf="mensagemSucesso" class="toast-sucesso">
+    Produto cadastrado com sucesso!
+  </div>
+
+  <div *ngIf="mensagemErro" class="toast-erro">
+    {{ mensagemErro }}
+  </div>
+
   <h1>Cadastro de Produto</h1>
 
   <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
