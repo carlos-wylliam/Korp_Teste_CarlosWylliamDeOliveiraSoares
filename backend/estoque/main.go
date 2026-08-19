@@ -23,5 +23,6 @@ func main() {
 	r.GET("/produtos", controllers.ListarProdutos)
 	r.PUT("/produtos/:codigo/saldo", controllers.AtualizarSaldo)
 	r.GET("/produtos/:codigo", controllers.BuscarProduto)
+	r.DELETE("/produtos/:codigo", controllers.ExcluirProduto)
 	r.Run(":8000")
 }

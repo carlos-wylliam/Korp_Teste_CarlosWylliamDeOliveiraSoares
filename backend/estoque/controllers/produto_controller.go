@@ -104,3 +104,21 @@ func BuscarProduto(c *gin.Context) {
 
 	c.JSON(http.StatusOK, produto)
 }
+
+func ExcluirProduto(c *gin.Context) {
+	codigo := c.Param("codigo")
+
+	result, err := database.DB.Exec("DELETE FROM produtos WHERE codigo = ?", codigo)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao excluir produto: " + err.Error()})
+		return
+	}
+
+	linhasAfetadas, _ := result.RowsAffected()
+	if linhasAfetadas == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "produto não encontrado"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "produto excluído com sucesso"})
+}
