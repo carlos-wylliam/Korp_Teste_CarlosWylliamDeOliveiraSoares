@@ -17,4 +17,8 @@ export class Produto {
   listar() {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  excluir(codigo: string) {
+  return this.http.delete(`${this.apiUrl}/${codigo}`);
+  }
 }
