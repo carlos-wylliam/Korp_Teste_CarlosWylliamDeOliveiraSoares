@@ -1,13 +1,64 @@
 <div class="home">
-    <h1>Sistema de Emissão de Notas Fiscais</h1>
-    <div class="cards">
-        <a routerLink="produtos" class="card">
-            <h2>Produtos</h2>
-            <p>Cadastre e consulte produtos disponíveis em estoque</p>
-        </a>
-        <a routerLink="/notas" class="card">
-            <h2>Notas Fiscais</h2>
-            <p>Emita e gerencie notas fiscais</p>
-        </a>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Sistema de Emissão<br>de Notas Fiscais</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">Gerencie produtos, estoque e emita notas fiscais de forma simples, rápida e segura.</p>
+
+      <ul class="hero-features">
+        <li>
+          <span class="material-icons feature-icon icon-blue">verified_user</span>
+          Segurança e conformidade
+        </li>
+        <li>
+          <span class="material-icons feature-icon icon-green">bolt</span>
+          Agilidade nos processos
+        </li>
+        <li>
+          <span class="material-icons feature-icon icon-green">bar_chart</span>
+          Informações sempre atualizadas
+        </li>
+      </ul>
     </div>
+
+    <div class="hero-image">
+      <img src="hero-nf.jpg" alt="Ilustração do sistema de notas fiscais">
+    </div>
+  </section>
+
+  <section class="cards">
+    <a routerLink="/produtos" class="card">
+      <div class="card-icon icon-box">
+        <span class="material-symbols-outlined">
+          package_2
+        </span>
+      </div>
+      <div class="card-content">
+        <div class="card-title-row">
+          <h2>Produtos</h2>
+          <span class="material-icons arrow-icon">arrow_forward</span>
+        </div>
+        <div class="card-divider"></div>
+        <p>Cadastre e consulte produtos<br> disponíveis em estoque.</p>
+      </div>
+    </a>
+
+    <a routerLink="/notas" class="card">
+      <div class="card-icon icon-doc">
+        <span class="material-icons">description</span>
+      </div>
+      <div class="card-content">
+        <div class="card-title-row">
+          <h2>Notas Fiscais</h2>
+          <span class="material-icons arrow-icon">arrow_forward</span>
+        </div>
+        <div class="card-divider divider-green"></div>
+        <p>Emita e gerencie<br> notas fiscais.</p>
+      </div>
+    </a>
+  </section>
+
+  <footer class="home-footer">
+    © 2026 Sistema de Emissão de Notas Fiscais — teste técnico Korp, desenvolvedor Carlos Wylliam
+  </footer>
 </div>

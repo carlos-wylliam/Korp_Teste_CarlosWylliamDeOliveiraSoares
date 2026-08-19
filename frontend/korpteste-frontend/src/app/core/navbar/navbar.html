@@ -1,5 +1,15 @@
-<nav>
-    <a routerLink="/">Início</a>
-    <a routerLink="/produtos">Produtos</a>
-    <a routerLink="/notas">Notas Fiscais</a>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span class="material-icons brand-icon">description</span>
+    <div class="brand-text">
+      <span class="brand-title">NF Sistema</span>
+      <span class="brand-subtitle">Emissão de notas fiscais</span>
+    </div>
+  </div>
+
+  <div class="navbar-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Início</a>
+    <a routerLink="/produtos" routerLinkActive="active">Produtos</a>
+    <a routerLink="/notas" routerLinkActive="active">Notas Fiscais</a>
+  </div>
 </nav>

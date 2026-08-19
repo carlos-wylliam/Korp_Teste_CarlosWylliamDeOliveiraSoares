@@ -1,17 +1,63 @@
-nav {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem 2rem;
-    background-color: #1f2937;
-    align-items: center;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-nav a {
-    color: #f9fafb;
-    text-decoration: none;
-    font-weight: 500;
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-nav a:hover {
-    color: #93c5fd;
+.brand-icon {
+  font-size: 2rem;
+  color: #247BEC;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #1f2937;
+}
+
+.brand-subtitle {
+  font-family: 'Geist', sans-serif;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2.25rem;
+}
+
+.navbar-links a {
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #374151;
+  text-decoration: none;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #247BEC;
+}
+
+.navbar-links a.active {
+  color: #247BEC;
+  border-bottom-color: #247BEC;
 }

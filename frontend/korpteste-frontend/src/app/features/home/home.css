@@ -1,42 +1,210 @@
 .home {
-    padding: 2rem;
-    text-align: center;
+  background-color: #F1F8FE;
+  min-height: calc(100vh - 70px);
+  padding: 3rem 2.5rem;
 }
 
-.home h1 {
-    margin-bottom: 2rem;
-    color: #1f2937;
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1300px;
+  margin: 0 auto 3rem;
 }
 
+.hero-text {
+  flex: 1;
+  max-width: 520px;
+}
+
+.hero-text h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 2.75rem;
+  line-height: 1.15;
+  color: #111827;
+  margin-bottom: 1.25rem;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 4px;
+  background-color: #247BEC;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-family: 'Geist', sans-serif;
+  font-size: 1.05rem;
+  color: #4b5563;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.hero-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0;
+}
+
+.hero-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.feature-icon {
+  font-size: 1.1rem;
+  width: 1.9rem;
+  height: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.feature-icon.icon-blue {
+  color: #247BEC;
+  background-color: #dbeafe;
+}
+
+.feature-icon.icon-green {
+  color: #2AC796;
+  background-color: #d1fae5;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 620px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* CARDS */
 .cards {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
 }
 
 .card {
-    display: block;
-    width: 250px;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: #f3f4f6;
-    text-decoration: none;
-    color: #1f2937;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-.card h2 {
-    margin-bottom: 0.5rem;
-    color: #2563eb;
+.card-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-icon .material-icons {
+  font-size: 2.75rem;
+}
+.card-icon .material-symbols-outlined {
+  font-size: 2.75rem;
+}
+
+.card-icon.icon-box {
+  background-color: #dbeafe;
+  color: #247BEC;
+}
+
+.card-icon.icon-doc {
+  background-color: #d1fae5;
+  color: #2AC796;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title-row h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.arrow-icon {
+  color: #111827;
+  font-size: 1.4rem;
+}
+
+.card-divider {
+  width: 40px;
+  height: 3px;
+  background-color: #247BEC;
+  border-radius: 999px;
+  margin: 0.5rem 0 0.75rem;
+}
+.card-divider.divider-green {
+  width: 40px;
+  height: 3px;
+  background-color: #2AC796;
+  border-radius: 999px;
+  margin: 0.5rem 0 0.75rem;
 }
 
 .card p {
-    font-size: 0.9rem;
-    color: #4b5563;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.home-footer {
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.85rem;
+  color: #6b7280;
+  padding-top: 1.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
 }
