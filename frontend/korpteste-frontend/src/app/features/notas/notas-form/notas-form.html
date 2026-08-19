@@ -1,40 +1,61 @@
-<div class="form-container">
+<div class="page">
   <div *ngIf="mensagemSucesso" class="toast-sucesso">
+    <span class="material-icons">check_circle</span>
     Nota fiscal cadastrada com sucesso!
   </div>
 
   <div *ngIf="mensagemErro" class="toast-erro">
+    <span class="material-icons">error</span>
     {{ mensagemErro }}
   </div>
 
-  <h1>Cadastro de Nota Fiscal</h1>
+  <div class="form-card">
+    <h1>Cadastro de Nota Fiscal</h1>
+    <p class="form-subtitle">Emita e gerencie as notas fiscais</p>
+    <div class="form-divider"></div>
 
-  <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
-    <div class="status-badge">Status: {{ form.value.status }}</div>
-
-    <div formArrayName="itens" class="itens-list">
-      <div *ngFor="let item of itens.controls; let i = index" [formGroupName]="i" class="item-row">
-        <div class="form-group">
-          <label>Código do Produto</label>
-          <input type="text" formControlName="produtoCodigo">
-          <span class="erro-campo" *ngIf="item.get('produtoCodigo')?.touched && item.get('produtoCodigo')?.hasError('required')">
-            Código é obrigatório
-          </span>
-        </div>
-
-        <div class="form-group">
-          <label>Quantidade</label>
-          <input type="number" formControlName="quantidade">
-          <span class="erro-campo" *ngIf="item.get('quantidade')?.touched && item.get('quantidade')?.hasError('min')">
-            A quantidade deve ser no mínimo 1
-          </span>
-        </div>
-
-        <button type="button" class="btn-remove" (click)="removerItem(i)">Remover</button>
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Status: {{ form.value.status }}
       </div>
-    </div>
 
-    <button type="button" class="btn-secondary" (click)="adicionarItem()">Adicionar Produto</button>
-    <button type="submit" class="btn-primary">Salvar Nota</button>
-  </form>
+      <div formArrayName="itens" class="itens-list">
+        <div *ngFor="let item of itens.controls; let i = index" [formGroupName]="i" class="item-row">
+          <div class="form-group">
+            <label>Código do Produto</label>
+            <input type="text" formControlName="produtoCodigo">
+            <span class="erro-campo" *ngIf="item.get('produtoCodigo')?.touched && item.get('produtoCodigo')?.hasError('required')">
+              Código é obrigatório
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Quantidade</label>
+            <div class="quantidade-row">
+              <input type="number" formControlName="quantidade">
+              <button type="button" class="btn-link btn-excluir" (click)="removerItem(i)">
+                <span class="material-icons">delete</span>
+                Excluir
+              </button>
+            </div>
+            <span class="erro-campo" *ngIf="item.get('quantidade')?.touched && item.get('quantidade')?.hasError('min')">
+              A quantidade deve ser no mínimo 1
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-secondary" (click)="adicionarItem()">Adicionar Produto</button>
+
+      <div class="form-divider"></div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          <span class="material-icons">save</span>
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
