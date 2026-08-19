@@ -22,6 +22,7 @@ func main() {
 	r.POST("/notas", controllers.CriarNota)
 	r.GET("/notas", controllers.ListarNotas)
 	r.PUT("/notas/:numero/imprimir", controllers.ImprimirNota)
+	r.DELETE("/notas/:numero", controllers.ExcluirNota)
 	
 	r.Run(":8001")
 }

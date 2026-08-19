@@ -186,3 +186,33 @@ func ImprimirNota(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"numero": numero, "status": "Fechada"})
 }
+
+func ExcluirNota(c *gin.Context) {
+	numero := c.Param("numero")
+
+	var status string
+	err := database.DB.QueryRow("SELECT status FROM notas WHERE numero = ?", numero).Scan(&status)
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "nota não encontrada"})
+		return
+	}
+
+	if status != "Aberta" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "somente notas com status Aberta podem ser excluídas"})
+		return
+	}
+
+	_, err = database.DB.Exec("DELETE FROM itens_nota WHERE nota_numero = ?", numero)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao excluir itens da nota: " + err.Error()})
+		return
+	}
+
+	_, err = database.DB.Exec("DELETE FROM notas WHERE numero = ?", numero)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao excluir nota: " + err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "nota excluída com sucesso"})
+}
