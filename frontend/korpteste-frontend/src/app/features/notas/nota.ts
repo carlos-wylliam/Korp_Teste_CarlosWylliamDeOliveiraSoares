@@ -20,4 +20,8 @@ export class Nota {
   imprimir(numero:number) {
     return this.http.put(`${this.apiUrl}/${numero}/imprimir`, {});
   }
+
+  excluir(numero: number) {
+  return this.http.delete(`${this.apiUrl}/${numero}`);
+  }
 }
