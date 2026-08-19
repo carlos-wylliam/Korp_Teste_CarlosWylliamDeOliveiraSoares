@@ -1,39 +1,52 @@
-<div class="form-container">
+<div class="page">
   <div *ngIf="mensagemSucesso" class="toast-sucesso">
+    <span class="material-icons">check_circle</span>
     Produto cadastrado com sucesso!
   </div>
 
   <div *ngIf="mensagemErro" class="toast-erro">
+    <span class="material-icons">error</span>
     {{ mensagemErro }}
   </div>
 
-  <h1>Cadastro de Produto</h1>
+  <div class="form-card">
+    <h1>Cadastro de Produto</h1>
+    <p class="form-subtitle">Preencha os dados abaixo para cadastrar um novo produto.</p>
+    <div class="form-divider"></div>
 
-  <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
-    <div class="form-group">
-      <label>Código</label>
-      <input type="text" formControlName="codigo">
-    </div>
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="form">
+      <div class="form-group">
+        <label>Código</label>
+        <input type="text" formControlName="codigo" placeholder="Informe o código do produto">
+      </div>
 
-    <div class="form-group">
-      <label>Descrição</label>
-      <input type="text" formControlName="descricao">
-      <span class="erro-campo" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('minlength')">
-        A descrição precisa ter pelo menos 3 caracteres
-      </span>
-      <span class="erro-campo" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('required')">
-        A descrição é obrigatória
-      </span>
-    </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <input type="text" formControlName="descricao" placeholder="Informe a descrição do produto">
+        <span class="erro-campo" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('minlength')">
+          A descrição precisa ter pelo menos 3 caracteres
+        </span>
+        <span class="erro-campo" *ngIf="form.get('descricao')?.touched && form.get('descricao')?.hasError('required')">
+          A descrição é obrigatória
+        </span>
+      </div>
 
-    <div class="form-group">
-      <label>Saldo</label>
-      <input type="number" formControlName="saldo">
-      <span class="erro-campo" *ngIf="form.get('saldo')?.touched && form.get('saldo')?.hasError('min')">
-        O saldo não pode ser negativo
-      </span>
-    </div>
+      <div class="form-group">
+        <label>Saldo</label>
+        <input type="number" formControlName="saldo">
+        <span class="erro-campo" *ngIf="form.get('saldo')?.touched && form.get('saldo')?.hasError('min')">
+          O saldo não pode ser negativo
+        </span>
+      </div>
 
-    <button type="submit" class="btn-primary">Salvar</button>
-  </form>
+      <div class="form-divider"></div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          <span class="material-icons">save</span>
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

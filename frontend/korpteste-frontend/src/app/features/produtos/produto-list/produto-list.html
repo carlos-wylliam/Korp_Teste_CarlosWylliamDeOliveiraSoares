@@ -1,23 +1,40 @@
-<div class="list-container">
-  <div class="list-header">
-    <h1>Produtos</h1>
-    <a routerLink="/produtos/novo" class="btn-primary">Novo Produto</a>
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Produtos</h1>
+      <p class="page-subtitle">Cadastre e consulte produtos disponíveis em estoque.</p>
+    </div>
+    <a routerLink="/produtos/novo" class="btn-primary">
+      <span class="material-icons">add</span>
+      Novo produto
+    </a>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Descrição</th>
-        <th>Saldo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let produto of produtos">
-        <td>{{ produto.codigo }}</td>
-        <td>{{ produto.descricao }}</td>
-        <td>{{ produto.saldo }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div *ngIf="erro" class="alert-error">{{ erro }}</div>
+
+  <div class="table-card">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Saldo</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td>{{ produto.codigo }}</td>
+          <td>{{ produto.descricao }}</td>
+          <td>{{ produto.saldo }}</td>
+          <td>
+            <button class="btn-excluir" (click)="excluir(produto.codigo)">
+              <span class="material-icons">delete</span>
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
